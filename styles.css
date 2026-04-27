@@ -363,7 +363,7 @@ img.about-image {
 /* ============================================
    8. SERVICES SECTION
    ============================================ */
-..services {
+.services {
     padding: var(--section-padding);
     background-color: var(--cream);
     max-width: 100%;
@@ -691,5 +691,26 @@ img.about-image {
 @media (max-width: 768px) {
     .hero-buttons {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-image {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .about-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        padding: 1rem 2rem;
+    }
+
+    .nav-links li a {
+        padding: 0.5rem 0;
     }
 }
