@@ -1,0 +1,695 @@
+/* ============================================
+   1. ROOT / THEME
+   Colours matched to the logo
+   ============================================ */
+:root {
+    --rose: #E8A0A0;
+    --plum: #9d5977;
+    --cream: #FDF6F0;
+    --white: #ffffff;
+    --border: rgba(74, 32, 64, 0.15);
+    --text-muted: #7a5a70;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+    --max-width: 1100px;
+    --section-padding: 5rem 1.5rem;
+    --border-radius: 16px;
+    --transition: 0.25s ease;
+}
+
+/* ============================================
+   2. RESET & BASE
+   ============================================ */
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--cream);
+    background-color: var(--cream);
+    line-height: 1.7;
+    padding-top: 70px;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    min-height: 100%;
+}
+
+/* ============================================
+   3. SHARED / UTILITY
+   ============================================ */
+.section-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.5rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--plum);
+    line-height: 1.2;
+}
+
+/* ============================================
+   4. BUTTONS
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+    flex-direction: row;
+    gap: 1rem;
+    background-color: var(--plum);
+    color: var(--white);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(204, 75, 20, 0.35);
+    background-color: var(--rose);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.about-btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition);
+    flex-direction: row;
+    gap: 1rem;
+    background-color: var(--cream);
+    color: var(--plum);
+}
+
+.about-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(204, 75, 20, 0.35);
+    background-color: var(--rose);
+}
+
+/* ============================================
+   5. HEADER / NAV
+   ============================================ */
+.main-nav {
+    position: fixed;
+    height: 70px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--cream);
+    border-bottom: 1px solid var(--rose);
+    padding: 0 24px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo image in the nav */
+.nav-logo {
+    height: 52px;
+    /* fits inside the 70px navbar with a little breathing room */
+    width: auto;
+    /* keeps the logo's natural proportions */
+    display: block;
+}
+
+/* Nav links */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--plum);
+    position: relative;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+/* Sliding underline on hover (kept from your original) */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 3px;
+    background: var(--plum);
+    transition: width var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--rose);
+}
+
+.nav-links a.active {
+    border-bottom: 3px solid var(--plum);
+    padding-bottom: 4px;
+}
+
+.nav-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--plum);
+    font-weight: 400;
+}
+
+
+/* --- CSS-only hamburger --- */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    position: absolute;
+    right: 20px;
+    /* right side since logo is on the left */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--plum);
+    border-radius: 2px;
+    transition: transform var(--transition), opacity var(--transition);
+}
+
+#menu-toggle:checked~.hamburger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+#menu-toggle:checked~.hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle:checked~.hamburger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================
+   6. HERO SECTION
+   ============================================ */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background-image: url('images/hair-hero.webp');
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 1.5rem 5rem;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.hero-tagline {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+}
+
+.hero-sub {
+    font-size: 1.1rem;
+    color: var(--stone-muted);
+    margin-bottom: 2rem;
+    max-width: 420px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%
+}
+
+.hero-content .btn {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+/* Decorative CSS circles */
+.hero-visual {
+    position: relative;
+    height: 380px;
+}
+
+
+
+/* ============================================
+   7. TRUST BAR
+   ============================================ */
+.trust-bar {
+    background-color: var(--cream);
+    color: var(--plum);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem 3rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+img.about-image {
+    height: 400px;
+    width: auto;
+    display: inline-block;
+    border-radius: 5px;
+
+}
+
+/* ============================================
+   8. SERVICES SECTION
+   ============================================ */
+..services {
+    padding: var(--section-padding);
+    background-color: var(--cream);
+    max-width: 100%;
+}
+
+.services h2 {
+    text-align: center;
+    font-family: var(--font-heading);
+    color: var(--plum);
+    margin-bottom: 3rem;
+}
+
+.services-list {
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.service-category h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--plum);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--rose);
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(157, 89, 119, 0.15);
+}
+
+.service-name {
+    font-size: 1rem;
+    color: var(--plum);
+}
+
+.service-price {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--plum);
+    font-weight: 600;
+}
+
+.services-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   9. ABOUT SECTION
+   ============================================ */
+.about {
+    background-color: var(--plum);
+    color: var(--white);
+    padding: var(--section-padding);
+}
+
+.about-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(250px, 400px) 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about .section-label {
+    color: var(--cream);
+}
+
+.about h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+
+.about-text p {
+    color: var(--cream);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.about-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-top: 3rem;
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+.stat {
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid var(--rose);
+    padding-left: 0;
+    padding-top: 1rem;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--white);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* ============================================
+   10. CONTACT SECTION
+   ============================================ */
+.contact {
+    padding: var(--section-padding);
+    background-color: var(--plum);
+}
+
+.contact-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    background-color: var(--cream);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(34, 158, 225, 0.08);
+    padding: 3.5rem;
+}
+
+.contact h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    color: var(--plum);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.contact p {
+    color: var(--plum);
+    font-size: 1rem;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--plum);
+    font-weight: 500;
+    transition: color var(--transition);
+}
+
+.contact-link:hover {
+    color: var(--rose);
+}
+
+.contact-icon {
+    font-size: 1.2rem;
+    color: var(--plum);
+}
+
+/* ============================================
+   11. FOOTER
+   ============================================ */
+.site-footer {
+    background-color: var(--cream);
+    color: var(--plum);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-nav a {
+    color: var(--plum);
+    transition: color var(--transition);
+}
+
+.footer-nav a:hover {
+    color: var(--rose);
+}
+
+.built-by {
+    font-size: 0.8rem;
+    color: var(--plum);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-logo {
+    height: 45px;
+    width: auto;
+    display: inline-block;
+    opacity: 0.85;
+    transition: opacity var(--transition);
+}
+
+.footer-logo:hover {
+    opacity: 1;
+}
+
+/* ============================================
+   12. RESPONSIVE — MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        z-index: 1100;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: var(--plum);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2.5rem;
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .nav-links a {
+        color: var(--white);
+    }
+
+    #menu-toggle:checked~.hamburger~.nav-links {
+        display: flex;
+    }
+
+    .hero {
+        padding-top: 3rem;
+        text-align: center;
+    }
+
+    .hero-sub {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-content .btn {
+        align-self: center;
+    }
+
+    .about-inner,
+    .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .trust-bar {
+        gap: 0.6rem 1.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-inner {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+    }
+}
